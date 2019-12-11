@@ -90,13 +90,17 @@ void* server(void* arg)
 void* interface(void* arg)
 {   
     struct data *buff = (struct data*)arg;
+    struct limite *max = (struct limite*)arg;
 
-    char m_data[512];
+    char *m_data = malloc(sizeof(char)*512);
 
-    printf("\nMensagem: ");
-    scanf("%s" ,m_data);
+    printf("Mensagem: ");
 
-    buff->buff[512] = m_data[512];
+    for(int i = 0; i <= (max->limite); i++) 
+    {
+        scanf("%s" , m_data);
+        buff->buff[i] = m_data[i];
+    }
 
     pthread_exit(0);
 }
