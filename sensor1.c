@@ -1,4 +1,8 @@
-//copyright mavismg - Mateus Jorge
+/*
+    Copyright mavismg - Mateus Jorge
+    Materia: Sistemas de Computação - UFOP, Dezembro 2019
+    Curso: Engenharia de Controle e Automação
+*/
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -79,13 +83,13 @@ gethostname (char *host)*/
     if(connect(socketHandle, (struct sockaddr *)&remoteSocketInfo, sizeof(struct sockaddr_in)) < 0)
     {
         close(socketHandle);
-        printf("Erro de conexao");
+        printf("Erro de conexao\n");
         return 0;
     }
 
     do
     {
-        strcpy(socket_message.buff, "Message to send");
+        strcpy(socket_message.buff, "Message to send: ");
         send(socketHandle, socket_message.buff, strlen(socket_message.buff)+1, 0);
     } while (!strcpy(socket_message.buff, "fim"));
 

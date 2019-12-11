@@ -1,5 +1,8 @@
-//server
-//copyright mavismg - Mateus Jorge
+/*
+    Copyright mavismg - Mateus Jorge
+    Materia: Sistemas de Computação - UFOP, Dezembro 2019
+    Curso: Engenharia de Controle e Automação
+*/
 
 #include <stdlib.h>
 #include <stdio.h>
@@ -41,17 +44,17 @@ int main(int argc, char **argv)
 
     if(bind(sock, (struct sockaddr *)&server_addr, sizeof(struct sockaddr)) == -1)
     {
-        perror("Unable to bind");
+        perror("Unable to bind\n");
         exit(state__);
     }
 
     if(listen(sock, backlog) == -1)
     {
-        perror("Listen");
+        perror("Listen\n");
         exit(state__);
     }
 
-    printf("\n\nTCPServer esperando pela conexao na porta %d", port);
+    printf("\n\nTCP Server esperando pela conexao na porta %d", port);
     fflush(stdout);
 
     while(state__)
