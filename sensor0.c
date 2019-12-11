@@ -30,8 +30,6 @@
 struct limite{ int limite; };
 struct data{ char buff[512]; };
 
-int flag;
-
 void* server(void* arg)
 {   
     int port = 6000;
@@ -119,8 +117,6 @@ void* cliente(void* arg)
     struct sockaddr_in remoteSocketInfo;
     struct hostent *hPtr;
     struct data socket_message;
-    //struct rec_data state;
-    //struct limite *max = (struct limite*)arg;
 
     /*  DOCUMENTATION
         struct hostent *
@@ -166,18 +162,6 @@ void* cliente(void* arg)
 
     do
     {
-        /*
-        if(flag == 1) 
-        {
-            for(int i = 0; i <= (max->limite); i++) socket_message.buff[i] = state.recv__[i];
-            strcpy(socket_message.buff, "Message to send ");
-            send(socketHandle, socket_message.buff, strlen(socket_message.buff)+1, 0);
-        }*/
-
-        /*
-            Se a flag for diferente de 1 ele ira mandar apenas a mensagem atual.
-        */
-
         strcpy(socket_message.buff, "Message to send: ");
         send(socketHandle, socket_message.buff, strlen(socket_message.buff)+1, 0);
 
@@ -201,7 +185,7 @@ int main(int argc, char **argv)
         printf("Utilizacao: %s iniciar\n" ,argv[0]);
         exit(-1);
     }
-    
+
     int arg_num = argc-1;
 
     pthread_t THREAD_ID_1[arg_num];

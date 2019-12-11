@@ -75,8 +75,12 @@ gethostname (char *host)*/
         return 0;
     }
 
-    memcpy((char *)&remoteSocketInfo.sin_addr, hPtr->h_addr_list[0], hPtr->h_length); //h_addr é o primeiro elemento de h_addr_list
-    //V1.0.1 Erro de segmentacao - ATT h_addr_list estava setado em [1], mudei para 0. Corrigido!
+    /*  DOCUMENTATION
+        h_addr passou a ser h_addr_list
+        V1.0.1 Erro de Segmentacao -> Status: Corrigido
+    */
+   
+    memcpy((char *)&remoteSocketInfo.sin_addr, hPtr->h_addr_list[0], hPtr->h_length);
     remoteSocketInfo.sin_family = AF_INET;
     remoteSocketInfo.sin_port = htons((__u_short)portNumber);
 
