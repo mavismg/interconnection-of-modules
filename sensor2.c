@@ -92,13 +92,13 @@ void* interface(void* arg)
     struct data *buff = (struct data*)arg;
     struct limite *max = (struct limite*)arg;
 
-    char *m_data = malloc(sizeof(char)*512);
-
+    unsigned char *m_data = malloc(sizeof(char)*512);
+    //int m_data = 0;
     printf("Mensagem: ");
 
     for(int i = 0; i <= (max->limite); i++) 
     {
-        scanf("%s" , m_data);
+        scanf("%s" , &m_data[0]);
         buff->buff[i] = m_data[i];
     }
 
@@ -135,7 +135,8 @@ gethostname (char *host)*/
         return 0;
     }
 
-    memcpy((char *)&remoteSocketInfo.sin_addr, hPtr->h_addr_list[1], hPtr->h_length); //h_addr é o primeiro elemento de h_addr_list
+    memcpy((char *)&remoteSocketInfo.sin_addr, hPtr->h_addr_list[0], hPtr->h_length); //h_addr é o primeiro elemento de h_addr_list
+    //V1.0.1 Erro de segmentacao - ATT h_addr_list estava setado em [1], mudei para 0. Corrigido!
     remoteSocketInfo.sin_family = AF_INET;
     remoteSocketInfo.sin_port = htons((__u_short)portNumber);
 
