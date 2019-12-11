@@ -1,3 +1,5 @@
+//copyright mavismg - Mateus Jorge
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <pthread.h>
@@ -20,13 +22,17 @@ struct data{ char buff[512]; };
 void* interface(void* arg)
 {   
     struct data *buff = (struct data*)arg;
+    struct limite *max = (struct limite*)arg;
 
-    char m_data[512];
+    char *m_data = malloc(sizeof(char)*512);
 
     printf("Mensagem: ");
-    scanf("%s" ,m_data);
 
-    buff->buff[512] = m_data[512];
+    for(int i = 0; i <= (max->limite); i++) 
+    {
+        scanf("%s" , m_data);
+        buff->buff[i] = m_data[i];
+    }
 
     pthread_exit(0);
 }
@@ -41,7 +47,7 @@ void* cliente(void* arg)
 gethostname (char *host)*/
 
     int socketHandle;
-    char *remoteHost = "locahost";
+    char *remoteHost = "127.0.0.1"; //Ou localhost
     int portNumber = 6000;
 
     bzero(&remoteSocketInfo, sizeof(struct sockaddr_in));
@@ -83,6 +89,12 @@ gethostname (char *host)*/
 
 int main(int argc, char **argv)
 {
+    if(argc < 2)
+    {
+        printf("Utilizacao: %s iniciar\n" ,argv[0]);
+        exit(-1);
+    }
+
     int arg_num = argc-1;
 
     //SYNOPSIS
@@ -117,8 +129,6 @@ int main(int argc, char **argv)
     {
         pthread_join(THREAD_ID_1[i], &exit_status);
         pthread_join(THREAD_ID_2[i], &exit_status);
-
-        printf("Pacote de mensagem enviado\n");
     }
 }
 

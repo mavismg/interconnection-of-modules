@@ -1,5 +1,6 @@
 //client [x] server [x] and interface [x]
 //sensor 0
+//copyright mavismg - Mateus Jorge
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -92,7 +93,7 @@ void* interface(void* arg)
 
     char m_data[512];
 
-    printf("Mensagem: ");
+    printf("\nMensagem: ");
     scanf("%s" ,m_data);
 
     buff->buff[512] = m_data[512];
@@ -110,7 +111,7 @@ void* cliente(void* arg)
 gethostname (char *host)*/
 
     int socketHandle;
-    char *remoteHost = "locahost";
+    char *remoteHost = "127.0.0.1";
     int portNumber = 5000;
 
     bzero(&remoteSocketInfo, sizeof(struct sockaddr_in));
@@ -119,7 +120,7 @@ gethostname (char *host)*/
 
     if(hPtr == NULL)
     {
-        printf("Erro de DNS\n");
+        printf("\nErro de DNS\n");
         return 0;
     }
 

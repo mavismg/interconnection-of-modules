@@ -1,5 +1,5 @@
 //server
-//copyright mavis - Mateus Jorge
+//copyright mavismg - Mateus Jorge
 
 #include <stdlib.h>
 #include <stdio.h>
