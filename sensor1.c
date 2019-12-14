@@ -23,10 +23,6 @@
 struct limite{ int limite; };
 struct data{ char buff[512]; };
 
-/*
-    Analizar logica da estrutura abaixo.
-*/
-
 void* interface(void* arg)
 {   
     struct data *buff = (struct data*)arg;
